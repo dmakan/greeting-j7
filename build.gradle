@@ -36,3 +36,13 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+task(checkJava) {
+	doLast {
+		if(JavaVersion.current() != JavaVersion.VERSION_1_7){
+			throw new GradleException("This build must be run with java 7")
+		}
+	}
+}
+
+compileJava.dependsOn checkJava
